@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from 'react-dom'
+
+import { AppHeader } from './components/header';
+import { AppPostList } from './components/postList'
+
+import 'materialize-css/dist/css/materialize.min.css'
+import 'jquery/dist/jquery.min'
+import 'materialize-css/dist/js/materialize.min'
 
 class App extends Component {
+  state = {}
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <AppHeader />
+        <div className="navigation"></div>
+        <div className="categoriesList"></div>
+        <AppPostList posts={this.state.posts}/>
       </div>
     );
   }
 }
+
+
 
 export default App;
