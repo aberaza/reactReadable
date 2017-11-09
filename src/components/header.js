@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-function NavHeader(props){
+function NavHeader({categories, onChangeSorting }){
     return (
         <div className="navbar-fixed">
         <nav className="nav-extended">
@@ -14,15 +14,15 @@ function NavHeader(props){
                         <ul id="dropdownCat" className="dropdown-content">
                             <li><Link to="/">ALL</Link></li>
                             <li className="divider"></li>
-                            {props.categories.map(cat => <li><Link to={`/category/${cat}`}>{cat}</Link></li>)}
+                            {categories.map(cat => <li><Link to={`/${cat}`}>{cat}</Link></li>)}
                         </ul>
 
                     </a></li>
                     <li><a className="dropdown-button" href="#!" data-activates="dropdownSort"><i className="material-icons">filter_list</i></a>
                         <ul id="dropdownSort" className="dropdown-content">
-                            <li><a href="">Score</a></li>
-                            <li><a href="">Date</a></li>
-                            <li><a href="">Comments</a></li>
+                            <li><a onClick={()=>onChangeSorting("voteScore")} >Score</a></li>
+                            <li><a onClick={()=>onChangeSorting("timestamp")} >Date</a></li>
+                            <li><a onClick={()=>onChangeSorting("commentCount")} >Popularity</a></li>
                         </ul>
                     </li>
                 </ul>

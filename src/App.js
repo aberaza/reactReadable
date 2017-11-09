@@ -10,17 +10,23 @@ import 'jquery/dist/jquery.min'
 import 'materialize-css/dist/js/materialize.min'
 
 class App extends Component {
-  state = {}
+  state = {
+    posts:[],
+    categories:[],
+    sort:""
+  }
+
+  changeSorting = ( sort ) => this.setState( (state) =>( {...state, sort }) );
 
   render() {
     return (
       <div className="App">
-        <AppHeader />
+        <AppHeader onChangeSorting={this.changeSorting} />
         <div className="navigation"></div>
         <div className="categoriesList"></div>
 
-        <Route exact path="/" render={()=>(<AppPostList posts={this.state.posts} />)} />
-        <Route path="/category/:category" render={({match})=>(<AppPostList posts={this.state.posts} category={match.params.category} />)} />
+        <Route exact path="/" render={()=>(<AppPostList posts={this.state.posts} sort={this.state.sort} />)} />
+        <Route exact path="/:category" render={({match})=>(<AppPostList posts={this.state.posts} category={match.params.category} sort={this.state.sort} />)} />
 
         { /*
         <Route path="/post/:id" />
