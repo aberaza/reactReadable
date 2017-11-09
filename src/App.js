@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 
 import { AppHeader } from './components/header';
 import { AppPostList } from './components/postList'
+import { AppPostDetails } from './components/postDetails'
 
 import 'materialize-css/dist/css/materialize.min.css'
 import 'jquery/dist/jquery.min'
@@ -26,6 +27,8 @@ class App extends Component {
         <Route exact path="/" render={()=>(<AppPostList sort={this.state.sort} />)} />
         <Route exact path="/:category" render={({match})=>(<AppPostList category={match.params.category} sort={this.state.sort} />)} />
 
+        <Route exact path="/:category/:id" render={({match})=>(<AppPostDetails id={match.params.id} sort={this.state.sort} />)} />
+        
         { /*
         <Route path="/post/:id" />
 
