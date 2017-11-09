@@ -11,8 +11,6 @@ import 'materialize-css/dist/js/materialize.min'
 
 class App extends Component {
   state = {
-    posts:[],
-    categories:[],
     sort:""
   }
 
@@ -25,8 +23,8 @@ class App extends Component {
         <div className="navigation"></div>
         <div className="categoriesList"></div>
 
-        <Route exact path="/" render={()=>(<AppPostList posts={this.state.posts} sort={this.state.sort} />)} />
-        <Route exact path="/:category" render={({match})=>(<AppPostList posts={this.state.posts} category={match.params.category} sort={this.state.sort} />)} />
+        <Route exact path="/" render={()=>(<AppPostList sort={this.state.sort} />)} />
+        <Route exact path="/:category" render={({match})=>(<AppPostList category={match.params.category} sort={this.state.sort} />)} />
 
         { /*
         <Route path="/post/:id" />
