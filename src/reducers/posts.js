@@ -36,7 +36,7 @@ const initialPostsState = [
     },
     {
        id : "00000001",
-       timestamp: 1234567891,
+       timestamp: 1234567891956,
        title: "The Second  Post",
        body: "This is the body of the second post. Not quite original",
        author: "author1",

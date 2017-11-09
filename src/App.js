@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
+import { Route } from 'react-router-dom'
 
 import { AppHeader } from './components/header';
 import { AppPostList } from './components/postList'
@@ -17,7 +18,24 @@ class App extends Component {
         <AppHeader />
         <div className="navigation"></div>
         <div className="categoriesList"></div>
-        <AppPostList posts={this.state.posts}/>
+
+        <Route exact path="/" render={()=>(<AppPostList posts={this.state.posts} />)} />
+        <Route path="/category/:category" render={({match})=>(<AppPostList posts={this.state.posts} category={match.params.category} />)} />
+
+        { /*
+        <Route path="/post/:id" />
+
+        <Route path="/edit/:id" />
+          */}
+        <div className="fixed-action-btn horizontal">
+          <a href="" className="btn-floating btn-large green"><i className="large material-icons">add</i></a>
+           {/* <ul>
+              <li><a href="" className="btn-floating blue"><i className="material-icons">publish</i></a></li>
+              <li><a href="" className="btn-floating yellow"><i className="material-icons">publish</i></a></li>
+              <li><a href="" className="btn-floating pink"><i className="material-icons">publish</i></a></li>          
+            </ul>*/}
+        </div>             
+
       </div>
     );
   }
