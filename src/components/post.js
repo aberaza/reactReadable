@@ -10,7 +10,10 @@ export function AppPost(props){
                <img src="//:0" style={{backgroundColor:'#ff8093', height: '100px'}} alt=""/>
             
                 
-                <span className="card-title" ><div className="chip"> {voteScore} <i className="close material-icons">thumbs_up_down</i></div> {title}</span>
+                <span className="card-title" style={{width:'100%'}} >
+                    {title}    
+                    <div className="badge right"> {voteScore} <i className="close material-icons">thumbs_up_down</i></div>
+                </span>
                 <a href="#!" className="btn-floating btn-large halfway-fab waves-effect waves-light red">
                     <i className="large material-icons">thumb_up</i>   
                 </a>
@@ -23,7 +26,11 @@ export function AppPost(props){
                 </div>
             </div>
             
-            <div className="card-action"><a href="">Action 1</a></div>
+            <div className="card-action">
+                <a href=""></a>
+                <a href="" className="right red-text"><i className="material-icons">delete</i></a>
+                <a href="" className="right blue-text"><i className="material-icons">edit</i></a>
+            </div>
        </div>
     )
 }
