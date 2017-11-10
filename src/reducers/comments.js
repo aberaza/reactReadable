@@ -29,9 +29,20 @@ const initialCommentsState = {
         voteScore: 1,
         deleted: false,
         parentDeleted: false
-    }]
+    }],
+    "00000001" : [{
+        id:"p0002",
+        parentId: "00000001",
+        timestamp: 1234569890,
+        body: "No, please, stop with stupid mocked data!",
+        author: "Real User",
+        voteScore: 1,
+        deleted: false,
+        parentDeleted: false
+    }],
 }
 
+/** REDUCER */
 export default function (state=initialCommentsState, action){
     switch (action.type) {
         case GET_POST_COMMENTS: // TODO: Implement when server is integrated

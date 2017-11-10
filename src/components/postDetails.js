@@ -19,9 +19,8 @@ function PostDetails({ post, comments=[], sort }) {
     )
 }
 
-const mapStateToProps = ( {posts, comments}, { id }) =>{
-    console.log(comments)
-     return { post:posts.find(p=>(p.id===id)) ,comments: []}
+const mapStateToProps = ( { posts, comments } , { id }) =>{
+    return { post:posts.find(p=>(p.id===id)) ,comments: (comments[id]||[])}
 }
 
 
