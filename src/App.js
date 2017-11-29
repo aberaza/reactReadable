@@ -7,8 +7,6 @@ import { AppPostList } from './components/postList'
 import { AppPostDetails } from './components/postDetails'
 
 import 'materialize-css/dist/css/materialize.min.css'
-import 'jquery/dist/jquery.min'
-import 'materialize-css/dist/js/materialize.min'
 
 class App extends Component {
   state = {
@@ -35,7 +33,7 @@ class App extends Component {
         <Route path="/edit/:id" />
           */}
         <div className="fixed-action-btn horizontal">
-          <a href="" className="btn-floating btn-large green"><i className="large material-icons">add</i></a>
+          <a href="#modal1" className="btn-floating btn-large green modal-trigger"><i className="large material-icons">add</i></a>
            {/* <ul>
               <li><a href="" className="btn-floating blue"><i className="material-icons">publish</i></a></li>
               <li><a href="" className="btn-floating yellow"><i className="material-icons">publish</i></a></li>

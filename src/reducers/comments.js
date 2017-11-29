@@ -16,21 +16,21 @@ import { flagAsDeleted, setVoteScore } from '../utils/helpers'
             parentDeleted: Boolean
         }
     ]
-}
+} 
 */
 
-const initialCommentsState = {
-    "00000000" : [{
+const initialCommentsState = [
+    {
         id:"p0001",
         parentId: "00000000",
         timestamp: 1234569890,
-        body: "No, please, stop with stupid mocked data!",
+        body: "No, please, stop with st<F5>upid mocked data!",
         author: "Real User",
         voteScore: 1,
         deleted: false,
         parentDeleted: false
-    }],
-    "00000001" : [{
+    },
+    {
         id:"p0002",
         parentId: "00000001",
         timestamp: 1234569890,
@@ -39,30 +39,22 @@ const initialCommentsState = {
         voteScore: 1,
         deleted: false,
         parentDeleted: false
-    }],
-}
+    }
+];
 
 /** REDUCER */
 export default function (state=initialCommentsState, action){
+    console.dir(arguments)
     switch (action.type) {
         case GET_POST_COMMENTS: // TODO: Implement when server is integrated
         case GET_COMMENT: //TODO: implement when server is integrated
             return state;
         case ADD_COMMENT:
-            return {
-                ...state,
-                comments: [...state.comments, action.comment]
-            };
+            return [...state, action.comment]
         case DEL_COMMENT:
-            return {
-                ...state,
-                comments: state.comments.map(flagAsDeleted(action.id))
-            };
+            return state.map(flagAsDeleted(action.id))
         case RATE_COMMENT:
-            return {
-                ...state,
-                comments: state.comments.map(setVoteScore(action.id, action.score))
-            };
+            return state.map(setVoteScore(action.id, action.rate))
         default:
             return state;
     }

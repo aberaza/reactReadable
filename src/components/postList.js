@@ -23,7 +23,7 @@ function PostList({ posts, category = "ALL", sort }) {
 const mapStateToProps = ({posts}) => ({ posts })
 
 const mapDispatchToProps = (dispatch) => ({
-     //onPostClick : (id) => dispatch(showFull(id))
+    // onPostClick : (id) => dispatch(showFull(id))
 })
 
 
