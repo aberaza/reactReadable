@@ -11,8 +11,9 @@ function PostList({ posts, category = "ALL", sort }) {
           <div className="row">
             <div className="col s12">
                { (category!=="ALL"?posts.filter( post => post.category === category) : posts)
+                    .filter( post => post.deleted === false)
                     .sort(sortBy(sort))
-                    .map( post => <AppPost key={post.id} post={post} />) 
+                    .map( post => <AppPost key={post.id} id={post.id} />) 
                 }
             </div>
           </div>
@@ -22,9 +23,4 @@ function PostList({ posts, category = "ALL", sort }) {
 
 const mapStateToProps = ({posts}) => ({ posts })
 
-const mapDispatchToProps = (dispatch) => ({
-    // onPostClick : (id) => dispatch(showFull(id))
-})
-
-
-export let AppPostList = connect(mapStateToProps, mapDispatchToProps)(PostList)
+export let AppPostList = connect(mapStateToProps)(PostList)

@@ -76,20 +76,11 @@ export default function( state = initialPostsState, action ) {
         case GET_POST :
             return state; //TODO: this should get a post from the server
         case ADD_POST :
-            return {
-                ...state,
-                posts : [...state.posts, action.post]
-            };
+            return [...state, action.post]
         case DEL_POST :
-            return {
-                ...state,
-                posts : state.posts.map(flagAsDeleted(action.id))
-            };
+            return state.map(flagAsDeleted(action.id))
         case RATE_POST:
-            return {
-                ...state,
-                posts : state.posts.map(setVoteScore(action.id, action.score))
-            };
+            return state.map(setVoteScore(action.id, action.rate))
         default: 
             return state;
     }

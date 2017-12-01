@@ -44,7 +44,6 @@ const initialCommentsState = [
 
 /** REDUCER */
 export default function (state=initialCommentsState, action){
-    console.dir(arguments)
     switch (action.type) {
         case GET_POST_COMMENTS: // TODO: Implement when server is integrated
         case GET_COMMENT: //TODO: implement when server is integrated

@@ -24,10 +24,10 @@ class App extends Component {
 
         <Route exact path="/" render={()=>(<AppPostList sort={this.state.sort} />)} />
         <Route exact path="/:category" render={({match})=>(<AppPostList category={match.params.category} sort={this.state.sort} />)} />
-
-        <Route exact path="/:category/:id" render={({match})=>(<AppPostDetails id={match.params.id} sort={this.state.sort} />)} />
+        <Route path="/:category/:id" render={({match})=>(<AppPostDetails id={match.params.id} sort={this.state.sort} />)} />
         
         { /*
+        <Route exact path="/:category/:id" render={({match})=>(<AppPostDetails id={match.params.id} sort={this.state.sort} />)} />
         <Route path="/post/:id" />
 
         <Route path="/edit/:id" />
