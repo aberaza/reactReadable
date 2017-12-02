@@ -22,7 +22,7 @@ function PostDetails({ post, comments=[], sort, dispatch }) {
                 <div className="col s11 push-s1">
                     { comments
                             .filter( comment => !comment.deleted )
-                            .map( comment => <AppComment key={comment.id} comment={comment} deleteComment={onDeleteComment(comment.id, dispatch)} rateComment={onRateComment(comment.id, dispatch)} />) }
+                            .map( comment => <AppComment key={comment.id} id={comment.id} del={onDeleteComment(comment.id, dispatch)} rate={onRateComment(comment.id, dispatch)} />) }
                 </div>
             </div>
 

@@ -42,7 +42,7 @@ function Post(props){
 
 function PostEdit(props){
     const { post, categories, onChange } = props;
-    const { id, title, body, author } = post;
+    const { title, body, author } = post;
 
     const change = (e,name)=>{
         onChange(e.target.name, e.target.value);
