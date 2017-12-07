@@ -1,11 +1,14 @@
-import { GET_CATEGORIES, GET_CATEGORY_POSTS } from '../actions'
+import { GET_CATEGORIES, GET_CATEGORY_POSTS, SET_CATEGORY } from '../actions'
 
-const initialCategoriesState = ["cat1", "tales", "MagicUltra", "emptyCategory"];
+const initialCategoriesState = [{name:"cat1", path:"cat1"}, {name:"tales", path:"tales"}, {name:"MagicUltra", path:"MagicUltra"}];
     
 /** REDUCER */
 export  default function ( state = initialCategoriesState, action ) {
+    console.dir(arguments)
     switch( action.type ){
         case GET_CATEGORIES:
+            return action.categories;
+        case SET_CATEGORY:
         case GET_CATEGORY_POSTS:
         default:
             return state;

@@ -1,4 +1,4 @@
-import { GET_POST_COMMENTS, GET_COMMENT, ADD_COMMENT, DEL_COMMENT, RATE_COMMENT } from '../actions'
+import { GET_POST_COMMENTS, ADD_COMMENT, EDIT_COMMENT, GET_COMMENT, DEL_COMMENT, RATE_COMMENT } from '../actions'
 
 import { flagAsDeleted, setVoteScore } from '../utils/helpers'
 /* partial state model
@@ -50,6 +50,8 @@ export default function (state=initialCommentsState, action){
             return state;
         case ADD_COMMENT:
             return [...state, action.comment]
+        case EDIT_COMMENT:
+            return state.map((comment) => {return comment.id === action.comment.id? action.comment : comment ;})
         case DEL_COMMENT:
             return state.map(flagAsDeleted(action.id))
         case RATE_COMMENT:

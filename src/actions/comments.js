@@ -1,25 +1,33 @@
+import * as API from '../utils/blogAPI'
+
 export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
 export const GET_COMMENT = 'GET_COMMENT'
 
 
 export const ADD_COMMENT = 'ADD_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const DEL_COMMENT = 'DEL_COMMENT'
 export const RATE_COMMENT = 'RATE_COMMENT'
 
 
-export const getPostComments = id => ({
+export const getPostComments = comments => ({
     type: GET_POST_COMMENTS,
-    id
+    comments
 })
 
-export const getComment = id => ({
+export const getComment = comment => ({
     type: GET_COMMENT,
-    id
+    comment
 })
 
 
 export const addComment = comment => ({
     type: ADD_COMMENT,
+    comment
+})
+
+export const modifyComment = comment => ({
+    type: EDIT_COMMENT,
     comment
 })
 
@@ -34,3 +42,14 @@ export const rateComment = (id, rate) =>({
     rate
 })
 
+export const fetchPostComments = id => dispatch => API.getPostComments(id) 
+    .then(comments => dispatch(getPostComments(comments)))
+
+export const fetchComment = id => dispatch => API.getComment(id)
+    .then(comment => dispatch(getComment(comment)))
+
+export const saveComment = comment => dispatch => API.addComment(comment)
+    .then(comment => dispatch(saveComment(comment)))
+
+export const editComment = comment => dispatch => API.editComment(comment)
+    .then(comment => dispatch(modifyComment(comment)))

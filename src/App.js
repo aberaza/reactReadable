@@ -6,12 +6,15 @@ import { AppHeader } from './components/header';
 import { AppPostList } from './components/postList'
 import { AppPostDetails } from './components/postDetails'
 
+
 import 'materialize-css/dist/css/materialize.min.css'
 
 class App extends Component {
   state = {
     sort:""
   }
+
+  
 
   changeSorting = ( sort ) => this.setState( (state) =>( {...state, sort }) );
 
