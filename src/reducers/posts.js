@@ -1,4 +1,4 @@
-import { GET_POST, ADD_POST, DEL_POST, RATE_POST } from '../actions'
+import { GET_POST, GET_POSTS, GET_CATEGORY_POSTS, ADD_POST, DEL_POST, RATE_POST } from '../actions'
 import { flagAsDeleted, setVoteScore } from '../utils/helpers'
 
 /* partial model:
@@ -74,7 +74,11 @@ const initialPostsState = [
 export default function( state = initialPostsState, action ) {
     switch (action.type ) {
         case GET_POST :
-            return state; //TODO: this should get a post from the server
+            return [ action.post ]; 
+        case GET_POSTS :
+            return action.posts;
+        case GET_CATEGORY_POSTS:
+            return action.posts;
         case ADD_POST :
             return [...state, action.post]
         case DEL_POST :

@@ -9,7 +9,6 @@ export  default function ( state = initialCategoriesState, action ) {
         case GET_CATEGORIES:
             return action.categories;
         case SET_CATEGORY:
-        case GET_CATEGORY_POSTS:
         default:
             return state;
     }
