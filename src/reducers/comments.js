@@ -45,9 +45,10 @@ const initialCommentsState = [
 /** REDUCER */
 export default function (state=initialCommentsState, action){
     switch (action.type) {
-        case GET_POST_COMMENTS: // TODO: Implement when server is integrated
-        case GET_COMMENT: //TODO: implement when server is integrated
-            return state;
+        case GET_POST_COMMENTS:
+            return action.comments;
+        case GET_COMMENT: 
+            return [action.comment];
         case ADD_COMMENT:
             return [...state, action.comment]
         case EDIT_COMMENT:

@@ -5,11 +5,39 @@ import { Route } from 'react-router-dom'
 import { AppPost } from './post'
 
 import { AppComment } from './comment'
-import { delComment, rateComment } from '../actions/comments'
+import { serverGetPostComments, delComment, rateComment } from '../actions/comments'
 
 const onDeleteComment = (id, dispatch) => _=>{console.log("Want to delete comment " + id); dispatch(delComment(id));}
 const onRateComment = (id, dispatch) => rating=> dispatch(rateComment(id, rating)) 
 //const onEditComment = (id, dispatch) => text =>{console.log("Want to save comment " + id)}
+
+class PostDetails extends React.Component {
+    componentDidMount(){
+        this.props.getPostComments(this.props.id)
+    }
+
+    render() {
+        const {post={}, comments=[], sort} = this.props;
+
+        return (
+            <div className="postDetails">
+                <div className="row">
+                    <div className="col s12">
+                        <AppPost id={post.id}></AppPost>
+                    </div>
+                
+                    <div className="col s11 push-s1">
+                        { comments
+                                .filter( comment => !comment.deleted )
+                                .map( comment => <AppComment key={comment.id} id={comment.id} />) }
+                    </div>
+                </div>
+    
+                
+            </div>
+        )
+    }
+}
 
 function PostDetails({ post, comments=[], sort, dispatch }) {
     return (
@@ -37,4 +65,6 @@ const mapStateToProps = ( { posts, comments, categories } , { id }) => ( {
     categories
 } )
 
-export let AppPostDetails = connect(mapStateToProps)(PostDetails)
+const mapDispatchToProps = {getPostComments: serverGetPostComments}
+
+export let AppPostDetails = connect(mapStateToProps, mapDispatchToProps)(PostDetails)
