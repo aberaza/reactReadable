@@ -63,10 +63,10 @@ function EditComment(props) {
     )
 }
 
-class MComment extends React.Component {
+export class AppComment extends React.Component {
     constructor(props){
         super(props);
-        this.state = { editing : props.edit || false, comment : props.comment }
+        this.state = { editing : props.editing || false, comment : props.comment }
     }
  
     onEdit = ()=> this.setState({editing:true})
@@ -74,12 +74,10 @@ class MComment extends React.Component {
     onSave = (post)=> this.setState({editing:false, post}) 
     onChange = (e) => {
         const {name, value} = e.target
-        console.log(`Upate ${name} to ${value}`);
         this.setState(({comment}) => ({editing : true, comment: {...comment,[name] : value}}))
-        console.dir(this.state)
     } 
     onDelete = () => this.props.delComment(this.props.id) 
-    onRate = () => this.props.rateComment(this.props.id, this.props.rate + 1)
+    onRate = () => this.props.rate(this.props.id, this.props.rate + 1)
 
     render () {
         return (
@@ -89,11 +87,3 @@ class MComment extends React.Component {
         )
     }
 }
-
-const mapStateToProps = ( {comments}, {id}) =>({
-    comment : comments.find(c=>(c.id === id)) || {}
-})
-
-const mapDispatchToProps = { addComment, delComment, rateComment }
-
-export let AppComment = connect(mapStateToProps, mapDispatchToProps)(MComment)

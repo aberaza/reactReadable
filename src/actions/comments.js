@@ -51,3 +51,6 @@ export const serverAddComment = comment => dispatch => API.addComment(comment)
 
 export const serverEditComment = comment => dispatch => API.editComment(comment)
     .then(comment => dispatch(editComment(comment)))
+
+export const serverRateComment = (id, rate) => dispatch => API.rateComment(id, rate)
+    .then(console.dir)

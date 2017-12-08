@@ -4,7 +4,6 @@ const initialCategoriesState = [{name:"cat1", path:"cat1"}, {name:"tales", path:
     
 /** REDUCER */
 export  default function ( state = initialCategoriesState, action ) {
-    console.dir(arguments)
     switch( action.type ){
         case GET_CATEGORIES:
             return action.categories;
