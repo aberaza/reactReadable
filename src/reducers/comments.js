@@ -55,8 +55,6 @@ export default function (state=initialCommentsState, action){
             return state.map((comment) => {return comment.id === action.comment.id? action.comment : comment ;})
         case DEL_COMMENT:
             return state.map(flagAsDeleted(action.id))
-        case RATE_COMMENT:
-            return state.map(setVoteScore(action.id, action.rate))
         default:
             return state;
     }

@@ -77,7 +77,7 @@ export class AppComment extends React.Component {
         this.setState(({comment}) => ({editing : true, comment: {...comment,[name] : value}}))
     } 
     onDelete = () => this.props.delComment(this.props.id) 
-    onRate = () => this.props.rate(this.props.id, this.props.rate + 1)
+    onRate = () => this.props.rate(this.props.comment.id)
 
     render () {
         return (

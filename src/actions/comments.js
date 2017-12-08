@@ -5,8 +5,6 @@ export const GET_COMMENT = 'GET_COMMENT'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const DEL_COMMENT = 'DEL_COMMENT'
-export const RATE_COMMENT = 'RATE_COMMENT'
-
 
 export const getPostComments = comments => ({
     type: GET_POST_COMMENTS,
@@ -34,12 +32,6 @@ export const delComment = id => ({
     id
 })
 
-export const rateComment = (id, rate) =>({
-    type: RATE_COMMENT,
-    id,
-    rate
-})
-
 export const serverGetPostComments = id => dispatch => API.getPostComments(id) 
     .then(comments => dispatch(getPostComments(comments)))
 
@@ -53,4 +45,4 @@ export const serverEditComment = comment => dispatch => API.editComment(comment)
     .then(comment => dispatch(editComment(comment)))
 
 export const serverRateComment = (id, rate) => dispatch => API.rateComment(id, rate)
-    .then(console.dir)
+    .then(comment => dispatch(editComment(comment)))

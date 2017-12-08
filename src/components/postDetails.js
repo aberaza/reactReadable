@@ -5,11 +5,9 @@ import { Route } from 'react-router-dom'
 import { AppPost } from './post'
 
 import { AppComment } from './comment'
-import { serverGetPostComments, serverEditComment, delComment, rateComment } from '../actions/comments'
+import { serverGetPostComments, serverEditComment, serverRateComment, delComment } from '../actions/comments'
 
 const onDeleteComment = (id, dispatch) => _=>{console.log("Want to delete comment " + id); dispatch(delComment(id));}
-const onRateComment = (id, dispatch) => rating=> dispatch(rateComment(id, rating)) 
-//const onEditComment = (id, dispatch) => text =>{console.log("Want to save comment " + id)}
 
 class PostDetails extends React.Component {
     componentDidMount(){
@@ -45,6 +43,10 @@ const mapStateToProps = ( { posts, comments, categories } , { id }) => ( {
     categories
 } )
 
-const mapDispatchToProps = {getPostComments: serverGetPostComments, delComment, rateComment, editComment:serverEditComment}
+const mapDispatchToProps = {
+    getPostComments: serverGetPostComments,
+    rateComment: serverRateComment, 
+    delComment,
+    editComment:serverEditComment}
 
 export let AppPostDetails = connect(mapStateToProps, mapDispatchToProps)(PostDetails)

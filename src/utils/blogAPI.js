@@ -62,7 +62,7 @@ export const addComment = ({id, timestamp, body, author, parentId}) =>
         .then(res => res.json())
 
 // option can be 'upVote' or 'downVote'
-export const voteComment = (id, option='upVote') =>
+export const rateComment = (id, option='upVote') =>
     fetch(`${api}/comments/${id}`,
             {method:'POST', headers : {...headers, 'Content-Type':'application/json'}, body:JSON.stringify({option})})
         .then(res => res.json())
