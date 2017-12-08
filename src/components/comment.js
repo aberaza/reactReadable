@@ -34,8 +34,7 @@ function Comment(props){
 
 function EditComment(props) {
     const { comment, change, save, cancel } = props;
-    const { body, author } = comment;
-
+    const { body="", author="" } = comment;
 
     return (
         <div className="card grey lighten-2">
@@ -44,14 +43,14 @@ function EditComment(props) {
                     <div className="row">
                         <div className="input-field col s5">
                             <i className="material-icons prefix">face</i>
-                            <input type="text" value={author || "" } onChange={change} name="author" id="author"/>
-                            <label for="author">Author</label>
+                            <input type="text" value={author} onChange={change} name="author" id="author"/>
+                            <label className="active" for="author">Author</label>
                         </div>
                     </div>
                     <div className="input-field">
                         <i className="material-icons prefix">edit</i>
                         <textarea name="body" value={body} onChange={change} placeholder="...type your thoughts" id="body" className="materialize-textarea"></textarea>
-                        <label for="postBody">Post</label>
+                        <label className="active" for="postBody">Post</label>
                     </div>
                 </div>
             </div>
@@ -69,10 +68,14 @@ export class AppComment extends React.Component {
         this.state = { editing : props.editing || false, comment : props.comment }
     }
  
-    onEdit = ()=> this.setState({editing:true})
-    onCancel = ()=> this.setState({editing:false})
-    onSave = (post)=> this.setState({editing:false, post}) 
-    onChange = (e) => {
+    onEdit = _ => this.setState({editing:true})
+    onCancel = _ => this.setState({editing:false})
+    onSave = _ => {
+        this.setState({editing:false})
+        this.props.edit(this.state.comment)
+        
+    } 
+    onChange = (e) => { 
         const {name, value} = e.target
         this.setState(({comment}) => ({editing : true, comment: {...comment,[name] : value}}))
     } 
@@ -82,7 +85,7 @@ export class AppComment extends React.Component {
     render () {
         return (
             this.state.editing?
-                <EditComment comment={this.props.comment} change={this.onChange} save={this.onSave} cancel={this.onCancel} />
+                <EditComment comment={this.state.comment} change={this.onChange} save={this.onSave} cancel={this.onCancel} />
                 : <Comment comment={this.props.comment} edit={this.onEdit} del={this.onDelete} rate={this.onRate} /> 
         )
     }
