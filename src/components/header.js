@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { fetchCategories, selectCategory } from '../actions/categories'
+import { serverGetCategories, setCategory } from '../actions/categories'
 
 
 class NavHeader extends React.Component {
@@ -10,7 +10,7 @@ class NavHeader extends React.Component {
     componentDidMount() {
         console.log("componentDidMount")
         this.props.dispatch(
-           fetchCategories()
+           serverGetCategories()
         );
     }
 
@@ -25,9 +25,9 @@ class NavHeader extends React.Component {
                     <ul id="nav-mobile" className="right">
                         <li><a className="dropdown-button" href="#!" data-activates="dropdownCat">Categories <i className="material-icons right">arrow_drop_down</i></a>
                             <ul id="dropdownCat" className="dropdown-content">
-                                <li><Link to="/">ALL</Link></li>
+                                <li><Link to="/" onClick={()=>this.props.dispatch(setCategory(""))}>ALL</Link></li>
                                 <li className="divider"></li>
-                                {categories.map(cat => <li key={cat.name}><Link onClick={()=>this.props.dispatch(selectCategory(cat.path))} to={`/${cat.path}`}>{cat.name}</Link></li>)}
+                                {categories.map(cat => <li key={cat.name}><Link onClick={()=>this.props.dispatch(setCategory(cat.path))} to={`/${cat.path}`}>{cat.name}</Link></li>)}
                             </ul>
     
                         </li>

@@ -19,8 +19,10 @@ export const getCategoryPosts = (category, posts) => ({
     posts
 })
 
-export const fetchCategories = _=> (dispatch) => API.getCategories()
+export const serverGetCategories = _=> dispatch => API.getCategories()
         .then(categories => dispatch(getCategories(categories)))
+
+export const serverSetCategory = category => dispatch => dispatch(setCategory(category))
 
 export const selectCategory = category => dispatch => API.getCategoryPosts(category)
         .then(posts => dispatch(getCategoryPosts(category, posts)))
