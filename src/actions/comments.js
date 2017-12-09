@@ -39,10 +39,10 @@ export const serverGetComment = id => dispatch => API.getComment(id)
     .then(comment => dispatch(getComment(comment)))
 
 export const serverAddComment = comment => dispatch => API.addComment(comment)
-    .then(comment => dispatch(addComment(comment)))
+    .then(c => dispatch(addComment(c)))
 
 export const serverEditComment = comment => dispatch => API.editComment(comment)
-    .then(comment => dispatch(editComment(comment)))
+    .then(c => dispatch(editComment(c)))
 
 export const serverRateComment = (id, rate) => dispatch => API.rateComment(id, rate)
     .then(comment => dispatch(editComment(comment)))

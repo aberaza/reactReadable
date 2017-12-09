@@ -92,6 +92,7 @@ class MPost extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState){
+        console.dir(arguments)
         if(prevProps.categories !== this.props.categories){
             $('select').material_select()
         }
@@ -119,12 +120,11 @@ class MPost extends React.Component {
         return this.props.serverEditPost(p)         
     }
     onChange = (e) => {
-        console.dir(this.props)
         const {name, value} = e.target
         this.setState(({post})=>({editing:true, post : {...post,[name]:value}}))        
     }     
-    onDelete = ()=> this.props.serverDelPost(this.props.id)
-    onRate = (rate)=> this.props.serverRatePost(this.props.id)
+    onDelete = _=> this.props.serverDelPost(this.props.id)
+    onRate = _=> this.props.serverRatePost(this.props.id)
 
     render () {
         const { post, editing, isNew} = this.state;

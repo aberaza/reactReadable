@@ -1,6 +1,6 @@
 import { GET_POST_COMMENTS, ADD_COMMENT, EDIT_COMMENT, GET_COMMENT, DEL_COMMENT, RATE_COMMENT } from '../actions'
 
-import { flagAsDeleted, setVoteScore } from '../utils/helpers'
+import { flagAsDeleted, setVoteScore, updateElement } from '../utils/helpers'
 /* partial state model
 {
     ...,
@@ -24,7 +24,7 @@ const initialCommentsState = [
         id:"p0001",
         parentId: "00000000",
         timestamp: 1234569890,
-        body: "No, please, stop with st<F5>upid mocked data!",
+        body: "Nooooo, please, stop with stupid mocked data!",
         author: "Real User",
         voteScore: 1,
         deleted: false,
@@ -33,7 +33,7 @@ const initialCommentsState = [
     {
         id:"p0002",
         parentId: "00000001",
-        timestamp: 1234569890,
+        timestamp: 1234569891,
         body: "No, please, stop with stupid mocked data!",
         author: "Real User",
         voteScore: 1,
@@ -52,7 +52,7 @@ export default function (state=initialCommentsState, action){
         case ADD_COMMENT:
             return [...state, action.comment]
         case EDIT_COMMENT:
-            return state.map((comment) => {return comment.id === action.comment.id? action.comment : comment ;})
+            return state.map(updateElement(action.comment))
         case DEL_COMMENT:
             return state.map(flagAsDeleted(action.id))
         default:

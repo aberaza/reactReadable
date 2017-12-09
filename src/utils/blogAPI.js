@@ -38,7 +38,7 @@ export const votePost = (id, option='upVote') =>
     fetch(`${api}/posts/${id}`,
             {method:'POST', headers : {...headers, 'Content-Type':'application/json'}, body:JSON.stringify({option})})
         .then(res => res.json())
-
+       
 export const editPost = ({id, title, body}) => 
     fetch(`${api}/posts/${id}`,
             {method:'PUT', headers : {...headers, 'Content-Type':'application/json'}, body:JSON.stringify({title, body})})

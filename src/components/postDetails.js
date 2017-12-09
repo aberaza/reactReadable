@@ -7,8 +7,6 @@ import { AppPost } from './post'
 import { AppComment } from './comment'
 import { serverGetPostComments, serverEditComment, serverRateComment, delComment } from '../actions/comments'
 
-const onDeleteComment = (id, dispatch) => _=>{console.log("Want to delete comment " + id); dispatch(delComment(id));}
-
 class PostDetails extends React.Component {
     componentDidMount(){
         this.props.getPostComments(this.props.id)

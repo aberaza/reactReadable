@@ -6,7 +6,6 @@ export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const EDIT_POST = 'EDIT_POST'
 export const DEL_POST = 'DEL_POST'
-export const RATE_POST = 'RATE_POST'
 
 export const getPost = post => ({
     type: GET_POST,
@@ -49,13 +48,14 @@ export const selectCategory = category => dispatch => API.getCategoryPosts(categ
     .then(posts => dispatch(getCategoryPosts(category, posts)))
 
 export const serverAddPost = post => dispatch => API.addPost(post)
-    .then(post => dispatch(addPost(post)))
+    .then(p=> dispatch(addPost(p)))
 
 export const serverEditPost = post => dispatch => API.editPost(post)
-    .then(post => dispatch(editPost(post)))
-
-export const serverDelPost = id => dispatch => API.deletePost(id)
-    .then(post => dispatch(delPost(post.id)))
+    .then(p => dispatch(editPost(p)))
 
 export const serverRatePost = (id, rate) => dispatch => API.votePost(id, rate)
-    .then(post => dispatch(editPost(id, post)))
+    .then(p => dispatch(editPost(p)))
+
+export const serverDelPost = id => dispatch => API.deletePost(id)
+    .then(p => dispatch(delPost(p.id)))
+
