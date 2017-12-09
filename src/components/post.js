@@ -42,8 +42,8 @@ function Post(props){
 }
 
 function PostEdit(props){
-    const { post, categories, onChange, onSave, onCancel } = props;
-    const { title, body, author } = post;
+    const { post, isNew=true, categories, onChange, onSave, onCancel } = props;
+    const { title, body, author, category } = post;
 
     return (        
         <div className="card">
@@ -62,7 +62,7 @@ function PostEdit(props){
                     <div className="row">
                         <div className="input-field col s5">
                             <i className="material-icons prefix">face</i>
-                            <input type="text" value={author || "" } onChange={onChange} name="author" id="author"/>
+                            <input type="text" value={author || "" } disabled={!isNew} onChange={onChange} name="author" id="author"/>
                             <label className="active" for="author">Author</label>
                         </div>
                         <div className="input-field col s5">
@@ -87,7 +87,6 @@ function PostEdit(props){
 }
 
 class MPost extends React.Component {
-
     componentDidMount(){
         $('select').material_select()
     }
@@ -98,13 +97,13 @@ class MPost extends React.Component {
         }
     }
 
-
     constructor(props, context){
         super(props, context);
         this.state = {
-            editing:(this.props.editing || this.props.new || false),
-            isNew : this.props.new || false,
-            post : props.post
+            editing:(props.editing || props.new || false),
+            isNew : props.isNew || false,
+            post : props.post,
+            categories : props.categories
         }
     }
 
@@ -112,10 +111,12 @@ class MPost extends React.Component {
     onCancel = ()=> this.setState({editing:false})
     onSave = _ => { 
         this.setState({editing:false}); 
-        const category = $('.select-dropdown').val()
-        const p = {...this.state.post, category, id: this.props.id}
-        this.props.new? this.props.serverAddPost(p) : this.props.serverEditPost(p); 
-        
+        let p = this.state.post;
+        if (this.state.isNew) {
+            p = {...p, category:$('.select-dropdown').val(), id: this.props.id}
+            return this.props.serverAddPost(p)
+        }
+        return this.props.serverEditPost(p)         
     }
     onChange = (e) => {
         console.dir(this.props)
@@ -129,8 +130,8 @@ class MPost extends React.Component {
         const { post, editing, isNew} = this.state;
         const {categories} = this.props
         return (editing? 
-            <PostEdit post={post} categories={categories} onSave={this.onSave} onCancel={this.onCancel} onChange={this.onChange} /> 
-            : <Post post={post} new={isNew} onEdit={this.onEdit} onDelete={this.onDelete} onRate={this.onRate} />
+            <PostEdit post={post} isNew={isNew} categories={categories} onSave={this.onSave} onCancel={this.onCancel} onChange={this.onChange} /> 
+            : <Post post={post} onEdit={this.onEdit} onDelete={this.onDelete} onRate={this.onRate} />
         )        
     }
 }

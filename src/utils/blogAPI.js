@@ -23,13 +23,11 @@ export const getPosts = () =>
     fetch(`${api}/posts`, { headers })
         .then(res => res.json())
 
-export const addPost = ({id, timestamp=Date.now(), title, body, author, category}) => { 
-    console.log("ID::" + id)
-    return fetch(`${api}/posts`, { method:'POST', 
+export const addPost = ({id, timestamp=Date.now(), title, body, author, category}) => 
+    fetch(`${api}/posts`, { method:'POST', 
         headers : {...headers, 'Content-Type' : 'application/json' },
         body : JSON.stringify({id, timestamp, title, body, author, category}) })
         .then(res => res.json())
-}
 
 export const getPost = ( id ) =>
     fetch(`${api}/posts/${id}`, { headers })
@@ -41,7 +39,7 @@ export const votePost = (id, option='upVote') =>
             {method:'POST', headers : {...headers, 'Content-Type':'application/json'}, body:JSON.stringify({option})})
         .then(res => res.json())
 
-export const editPost = (id, {title, body}) => 
+export const editPost = ({id, title, body}) => 
     fetch(`${api}/posts/${id}`,
             {method:'PUT', headers : {...headers, 'Content-Type':'application/json'}, body:JSON.stringify({title, body})})
         .then(res => res.json())

@@ -14,7 +14,7 @@ class PostNew extends React.Component {
             <div className="posts">
                 <div className="row">
                     <div className="col s12">
-                        <AppPost editing={true} new={true} id={UUID.v1()}/>
+                        <AppPost editing={true} isNew={true} id={UUID.v1()}/>
                     </div>
                 </div>
             </div>
