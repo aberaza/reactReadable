@@ -13,6 +13,13 @@ export const setVoteScore = (id, score) => (item) => {
     return item;
 }
 
+export const updateElement = nItem => (oItem) => {
+    if(oItem.id === nItem.id){
+        return nItem;
+    }
+    return oItem;
+}
+
 export const timestamp2String = (timestamp) => {
     const pastTime = Date.now() - timestamp;
     if(pastTime < 5*60*1000){ //<5min 

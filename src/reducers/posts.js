@@ -1,5 +1,5 @@
-import { GET_POST, GET_POSTS, GET_CATEGORY_POSTS, ADD_POST, DEL_POST, RATE_POST } from '../actions'
-import { flagAsDeleted, setVoteScore } from '../utils/helpers'
+import { GET_POST, GET_POSTS, GET_CATEGORY_POSTS, ADD_POST, EDIT_POST, DEL_POST } from '../actions'
+import { flagAsDeleted, setVoteScore, updateElement } from '../utils/helpers'
 
 /* partial model:
 {
@@ -83,8 +83,8 @@ export default function( state = initialPostsState, action ) {
             return [...state, action.post]
         case DEL_POST :
             return state.map(flagAsDeleted(action.id))
-        case RATE_POST:
-            return state.map(setVoteScore(action.id, action.rate))
+        case EDIT_POST:
+            return state.map(updateElement(action.post))
         default: 
             return state;
     }

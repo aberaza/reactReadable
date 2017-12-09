@@ -72,8 +72,7 @@ export class AppComment extends React.Component {
     onCancel = _ => this.setState({editing:false})
     onSave = _ => {
         this.setState({editing:false})
-        this.props.edit(this.state.comment)
-        
+        this.props.edit(this.state.comment) 
     } 
     onChange = (e) => { 
         const {name, value} = e.target

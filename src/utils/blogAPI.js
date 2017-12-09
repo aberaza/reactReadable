@@ -23,11 +23,12 @@ export const getPosts = () =>
     fetch(`${api}/posts`, { headers })
         .then(res => res.json())
 
-export const addPost = ({id, timestamp, title, body, author, category}) => 
-    fetch(`${api}/posts`, { metod:'POST', 
+export const addPost = ({id, timestamp=Date.now(), title, body, author, category}) => { 
+    return fetch(`${api}/posts`, { method:'POST', 
         headers : {...headers, 'Content-Type' : 'application/json' },
         body : JSON.stringify({id, timestamp, title, body, author, category}) })
         .then(res => res.json())
+}
 
 export const getPost = ( id ) =>
     fetch(`${api}/posts/${id}`, { headers })
