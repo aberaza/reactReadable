@@ -1,6 +1,8 @@
 import  React  from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import $ from 'jquery'
+//import 'materialize-css/dist/js/materialize.min.js'
 
 import { addPost, delPost, ratePost } from '../actions/posts' 
 
@@ -59,24 +61,24 @@ function PostEdit(props){
                         <div className="input-field">
                             <i className="material-icons prefix">title</i>
                             <input type="text" value={title || ""} onChange={change} id="title" name="title" />
-                            <label for="title">Title</label>
+                            <label className="active" for="title">Title</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s5">
                             <i className="material-icons prefix">face</i>
                             <input type="text" value={author || "" } onChange={change} name="author" id="author"/>
-                            <label for="author">Author</label>
+                            <label className="active" for="author">Author</label>
                         </div>
                         <div className="input-field col s5">
-                            <select>{ categories.map(cat => (<option value={cat}>{cat}</option>))}</select>
+                            <select>{ categories.map(cat => (<option value={cat.path}>{cat.name}</option>))}</select>
                             <label>Category select</label>
                         </div>
                     </div>
                     <div className="input-field">
                         <i className="material-icons prefix">edit</i>
                         <textarea name="body" value={body} onChange={change} placeholder="...type your thoughts" id="body" className="materialize-textarea"></textarea>
-                        <label for="postBody">Post</label>
+                        <label className="active" for="postBody">Post</label>
                     </div>
                 </div>
             </div>
@@ -91,10 +93,15 @@ function PostEdit(props){
 
 class MPost extends React.Component {
 
+    componentDidMount(){
+        $('select').material_select()
+    }
+
     constructor(props){
         super(props);
         this.state = {
-            editing:false,
+            editing:(this.props.editing || this.props.new || false),
+            new : this.props.new || false,
             post : props.post
         }
     }
@@ -113,7 +120,7 @@ class MPost extends React.Component {
         //return content;
         return (this.state.editing? 
             <PostEdit post={this.state.post} categories={this.props.categories} onCancel={this.onCancel} onChange={this.onChange} /> 
-            : <Post post={this.state.post} onEdit={this.onEdit} onDelete={this.onDelete} onRate={this.onRate} />
+            : <Post post={this.state.post} new={this.state.new} onEdit={this.onEdit} onDelete={this.onDelete} onRate={this.onRate} />
         )        
     }
 }
