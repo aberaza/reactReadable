@@ -66,7 +66,7 @@ function PostEdit(props){
                             <label className="active" for="author">Author</label>
                         </div>
                         <div className="input-field col s5">
-                            <select id="categorySelect" onChange={onChange} defaultValue={categories[0].path}>{ categories.map(cat => (<option value={cat.path}>{cat.name}</option>))}</select>
+                            <select id="categorySelect" onChange={onChange} defaultValue={categories[0].path}>{ categories.map(cat => (<option value={cat.path} key={cat.path} >{cat.name}</option>))}</select>
                             <label>Category select</label>
                         </div>
                     </div>
@@ -79,8 +79,8 @@ function PostEdit(props){
             </div>
             
             <div className="card-action">
-                <a href='#!' onClick={onSave} className="blue-text">Save</a>
-                <a href='#!' onClick={onCancel} className="red-text">Back</a>
+                <Link to='/' onClick={onSave} className="blue-text">Save</Link>
+                <Link to='/' onClick={onCancel} className="red-text">Back</Link>
             </div>
        </div>
     )
@@ -99,8 +99,8 @@ class MPost extends React.Component {
     }
 
 
-    constructor(props){
-        super(props);
+    constructor(props, context){
+        super(props, context);
         this.state = {
             editing:(this.props.editing || this.props.new || false),
             isNew : this.props.new || false,
@@ -113,11 +113,12 @@ class MPost extends React.Component {
     onSave = _ => { 
         this.setState({editing:false}); 
         const category = $('.select-dropdown').val()
-        const p = {...this.state.post, category}
+        const p = {...this.state.post, category, id: this.props.id}
         this.props.new? this.props.serverAddPost(p) : this.props.serverEditPost(p); 
+        
     }
     onChange = (e) => {
-        console.dir(e.target)
+        console.dir(this.props)
         const {name, value} = e.target
         this.setState(({post})=>({editing:true, post : {...post,[name]:value}}))        
     }     

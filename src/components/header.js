@@ -17,7 +17,7 @@ class NavHeader extends React.Component {
             <div className="navbar-fixed">
             <nav className="nav-extended">
                 <div className="nav-wrapper">
-                    <a href="" className="brand-logo"><i className="material-icons">chat_bubble_outline</i>Readable</a>
+                    <Link to="/" className="brand-logo"><i className="material-icons">chat_bubble_outline</i>Readable</Link>
     
                     <ul id="nav-mobile" className="right">
                         <li><a className="dropdown-button" href="#!" data-activates="dropdownCat">Categories <i className="material-icons right">arrow_drop_down</i></a>

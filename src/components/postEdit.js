@@ -10,12 +10,11 @@ import { timestamp2String } from '../utils/helpers'
 class PostNew extends React.Component {
 
     render () {
-        const id = UUID.v1()
         return (
             <div className="posts">
                 <div className="row">
                     <div className="col s12">
-                        <AppPost editing={true} new={true} id={id}/>
+                        <AppPost editing={true} new={true} id={UUID.v1()}/>
                     </div>
                 </div>
             </div>

@@ -24,6 +24,7 @@ export const getPosts = () =>
         .then(res => res.json())
 
 export const addPost = ({id, timestamp=Date.now(), title, body, author, category}) => { 
+    console.log("ID::" + id)
     return fetch(`${api}/posts`, { method:'POST', 
         headers : {...headers, 'Content-Type' : 'application/json' },
         body : JSON.stringify({id, timestamp, title, body, author, category}) })
@@ -57,7 +58,7 @@ export const getComment = ( id ) =>
     fetch(`${api}/comments/${id}`, { headers })
         .then(res => res.json())
 
-export const addComment = ({id, timestamp, body, author, parentId}) =>
+export const addComment = ({id, timestamp, body, author, parentId}) => 
     fetch(`${api}/comments`,
             {method:'POST', headers : {...headers, 'Content-Type':'application/json'}, body:JSON.stringify({id, timestamp, body, author, parentId})})
         .then(res => res.json())
