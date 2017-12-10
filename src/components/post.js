@@ -92,10 +92,13 @@ class MPost extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-        console.dir(arguments)
         if(prevProps.categories !== this.props.categories){
             $('select').material_select()
         }
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({post:nextProps.post})
     }
 
     constructor(props, context){
@@ -127,6 +130,7 @@ class MPost extends React.Component {
     onRate = _=> this.props.serverRatePost(this.props.id)
 
     render () {
+        console.log("render!")
         const { post, editing, isNew} = this.state;
         const {categories} = this.props
         return (editing? 

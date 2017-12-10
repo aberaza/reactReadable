@@ -15,13 +15,13 @@ class PostDetails extends React.Component {
     }
 
     render() {
-        const {post={}, comments=[], sort, delComment, rateComment, editComment, addComment } = this.props;
+        const {id, comments=[], sort, delComment, rateComment, editComment, addComment } = this.props;
         const cId = UUID.v1();
         return (
             <div className="postDetails">
                 <div className="row">
                     <div className="col s12">
-                        <AppPost id={post.id}></AppPost>
+                        <AppPost id={id}></AppPost>
                     </div>
                 
                     <div className="col s11 push-s1">
@@ -36,11 +36,9 @@ class PostDetails extends React.Component {
     }
 }
 
-const mapStateToProps = ( { posts, comments, categories } , { id }) => ( { 
-    post : posts.find(p=>(p.id===id)), 
-    comments: comments.filter(comment => comment.parentId === id),
-    categories
-} )
+const mapStateToProps = ( { comments } , { id }) => ( {  
+    comments: comments.filter(comment => comment.parentId === id)
+})
 
 const mapDispatchToProps = {
     getPostComments: serverGetPostComments,
