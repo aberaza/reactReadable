@@ -34,7 +34,7 @@ function Comment(props){
 }
 
 function EditComment(props) {
-    const { comment, change, save, cancel } = props;
+    const { comment, change, save, cancel, isNew } = props;
     const { body="", author="" } = comment;
 
     return (
@@ -44,7 +44,7 @@ function EditComment(props) {
                     <div className="row">
                         <div className="input-field col s5">
                             <i className="material-icons prefix">face</i>
-                            <input type="text" value={author} onChange={change} name="author" id="author"/>
+                            <input type="text" value={author} onChange={change} name="author" id="author" disabled={!isNew}/>
                             <label className="active" for="author">Author</label>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ function EditComment(props) {
                     </div>
                 </div>
             </div>
-            <Route path="/:category/:id/comment" render={({match})=>(
+            <Route path="/:category/:id" render={({match})=>(
                 <div className="card-action">
                     <Link to={`/${match.params.category}/${match.params.id}`} onClick={save} className="blue-text">Save</Link>
                     <Link to={`/${match.params.category}/${match.params.id}`} onClick={cancel} className="red-text">Back</Link>
@@ -90,7 +90,7 @@ export class AppComment extends React.Component {
     render () {
         return (
             this.state.editing?
-                <EditComment comment={this.state.comment} change={this.onChange} save={this.onSave} cancel={this.onCancel} />
+                <EditComment comment={this.state.comment} change={this.onChange} save={this.onSave} cancel={this.onCancel} isNew={this.state.isNew} />
                 : <Comment comment={this.props.comment} edit={this.onEdit} del={this.onDelete} rate={this.onRate} /> 
         )
     }
