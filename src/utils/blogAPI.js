@@ -56,7 +56,7 @@ export const getComment = ( id ) =>
     fetch(`${api}/comments/${id}`, { headers })
         .then(res => res.json())
 
-export const addComment = ({id, timestamp, body, author, parentId}) => 
+export const addComment = ({id, timestamp=Date.now(), body, author, parentId}) => 
     fetch(`${api}/comments`,
             {method:'POST', headers : {...headers, 'Content-Type':'application/json'}, body:JSON.stringify({id, timestamp, body, author, parentId})})
         .then(res => res.json())
@@ -67,9 +67,9 @@ export const rateComment = (id, option='upVote') =>
             {method:'POST', headers : {...headers, 'Content-Type':'application/json'}, body:JSON.stringify({option})})
         .then(res => res.json())
 
-export const editComment = ({id, body}) => 
+export const editComment = ({id, body, timestamp=Date.now()}) => 
     fetch(`${api}/comments/${id}`,
-            {method:'PUT', headers : {...headers, 'Content-Type':'application/json'}, body:JSON.stringify({timestamp:Date.now(), body})})
+            {method:'PUT', headers : {...headers, 'Content-Type':'application/json'}, body:JSON.stringify({timestamp, body})})
         .then(res => res.json())
 
 export const deleteComment = ( id ) =>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Route, Link } from 'react-router-dom'
 
 import { timestamp2String } from '../utils/helpers'
 import { addComment, delComment, rateComment } from '../actions/comments'
@@ -54,10 +55,12 @@ function EditComment(props) {
                     </div>
                 </div>
             </div>
-            <div className="card-action">
-                <a href='#!' onClick={save} className="blue-text">Save</a>
-                <a href='#!' onClick={cancel} className="red-text">Back</a>
-            </div>
+            <Route path="/:category/:id/comment" render={({match})=>(
+                <div className="card-action">
+                    <Link to={`/${match.params.category}/${match.params.id}`} onClick={save} className="blue-text">Save</Link>
+                    <Link to={`/${match.params.category}/${match.params.id}`} onClick={cancel} className="red-text">Back</Link>
+                </div>
+            )} />
         </div>
     )
 }
@@ -65,7 +68,10 @@ function EditComment(props) {
 export class AppComment extends React.Component {
     constructor(props){
         super(props);
-        this.state = { editing : props.editing || false, comment : props.comment }
+        this.state = { 
+            editing : props.editing || false, 
+            isNew : props.isNew || false,
+            comment : props.comment }
     }
  
     onEdit = _ => this.setState({editing:true})
@@ -78,7 +84,7 @@ export class AppComment extends React.Component {
         const {name, value} = e.target
         this.setState(({comment}) => ({editing : true, comment: {...comment,[name] : value}}))
     } 
-    onDelete = () => this.props.delComment(this.props.id) 
+    onDelete = () => this.props.del(this.props.comment.id) 
     onRate = () => this.props.rate(this.props.comment.id)
 
     render () {

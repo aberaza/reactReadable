@@ -46,3 +46,7 @@ export const serverEditComment = comment => dispatch => API.editComment(comment)
 
 export const serverRateComment = (id, rate) => dispatch => API.rateComment(id, rate)
     .then(comment => dispatch(editComment(comment)))
+
+export const serverDelComment = id => dispatch => API.deleteComment(id)
+    .then(comment => dispatch(delComment(id)))
+    .then(console.dir)

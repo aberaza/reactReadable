@@ -35,7 +35,8 @@ class App extends Component {
         
         <div className="fixed-action-btn horizontal">
           <Switch>
-            <Route path="/:category/:id" render={_=>( <a href="#modal1" className="btn-floating btn-large green modal-trigger"><i className="large material-icons pink">comment</i></a> )} />
+            <Route path="/:category/:id" render={({location})=>( <Link to={`${location.pathname}/comment`} className="btn-floating btn-large green modal-trigger"><i className="large material-icons pink">comment</i></Link> )} />
+            <Route path="/new" render={_=>(<span></span>)} />
             <Route path="/" render={_=>(<Link to="/new" className="btn-floating btn-large green modal-trigger"><i className="large material-icons">add</i></Link>)} />
           </Switch>
         </div>             
