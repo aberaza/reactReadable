@@ -130,7 +130,6 @@ class MPost extends React.Component {
     onRate = _=> this.props.serverRatePost(this.props.id)
 
     render () {
-        console.log("render!")
         const { post, editing, isNew} = this.state;
         const {categories} = this.props
         return (editing? 

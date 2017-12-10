@@ -17,8 +17,6 @@ class App extends Component {
     sort:""
   }
 
-  
-
   changeSorting = ( sort ) => this.setState( (state) =>( {...state, sort }) );
 
   render() {
@@ -35,16 +33,15 @@ class App extends Component {
         
         <div className="fixed-action-btn horizontal">
           <Switch>
-            <Route path="/:category/:id" render={({location})=>( <Link to={`${location.pathname}/comment`} className="btn-floating btn-large green modal-trigger"><i className="large material-icons pink">comment</i></Link> )} />
+            <Route exact path="/:category/:id" render={({location})=>( <Link to={`${location.pathname}/comment`} className="btn-floating btn-large green modal-trigger"><i className="large material-icons pink">comment</i></Link> )} />
             <Route path="/new" render={_=>(<span></span>)} />
-            <Route path="/" render={_=>(<Link to="/new" className="btn-floating btn-large green modal-trigger"><i className="large material-icons">add</i></Link>)} />
+            <Route exact path="/" render={_=>(<Link to="/new" className="btn-floating btn-large green modal-trigger"><i className="large material-icons">add</i></Link>)} />
+            <Route exact path="/:category" render={_=>(<Link to="/new" className="btn-floating btn-large green modal-trigger"><i className="large material-icons">add</i></Link>)} />
           </Switch>
         </div>             
       </div>
     );
   }
 }
-
-
 
 export default App;

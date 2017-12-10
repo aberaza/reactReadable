@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import UUID from 'uuid'
 
 import { AppPost } from './post'
@@ -49,4 +49,4 @@ const mapDispatchToProps = {
     getPost:serverGetPost
 }
 
-export let AppPostDetails = connect(mapStateToProps, mapDispatchToProps)(PostDetails)
+export let AppPostDetails = withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetails))
