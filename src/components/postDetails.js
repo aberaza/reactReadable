@@ -8,6 +8,8 @@ import { AppPost } from './post'
 import { AppComment } from './comment'
 import { serverGetPostComments, serverEditComment, serverRateComment, serverDelComment, serverAddComment } from '../actions/comments'
 import { serverGetPost } from '../actions/posts'
+import { sortBy } from '../utils/helpers'
+
 class PostDetails extends React.Component {
     componentDidMount(){
         this.props.getPost(this.props.id)
@@ -27,6 +29,7 @@ class PostDetails extends React.Component {
                     <div className="col s11 push-s1">
                         { comments
                                 .filter( comment => !comment.deleted )
+                                .sort(sortBy(sort))
                                 .map( comment => <AppComment key={comment.id} comment={comment} edit={editComment} rate={rateComment} del={delComment} />) }
                         <Route path="/:category/:id/comment" render={({match}) => (<AppComment key={cId} comment={{id:cId, parentId:match.params.id}} editing={true} isNew={true} edit={addComment} />)} />    
                     </div>

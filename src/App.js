@@ -44,8 +44,8 @@ class App extends Component {
             <Route exact path="/:category" render={_=>(<Link to="/new" id="addBtn" className="btn-floating btn-large green modal-trigger"><i className="large material-icons">add</i></Link>)} />
           </Switch>
         </div>
-        <div class="tap-target" data-activates="addBtn">
-          <div class="tap-target-content">
+        <div className="tap-target" data-activates="addBtn">
+          <div className="tap-target-content">
             <h5>Add a Post or Comment</h5>
             <p>Don't be shy and share your thoughts. Click here to add a new post or comment an existing one!</p>              </div>
           </div>             
