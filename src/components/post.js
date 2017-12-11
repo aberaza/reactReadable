@@ -13,30 +13,35 @@ function Post(props){
     return (
        <div className="card">
            <div className="card-image">
-               <img src="//:0" style={{backgroundColor:'#ff8093', height: '100px'}} alt=""/>
+               <img src="//:0" style={{backgroundColor:'#ff7043', height: '100px'}} alt=""/>
             
                 <Link to={`/${category}/${id}`} className="card-title" style={{width:'100%'}} >
                     {title}    
                     <div className="badge right"> {voteScore} <i className="close material-icons">star</i></div>
                 </Link>
-                
+
+{ /*
                 <a href="#!" onClick={()=>props.onRate(voteScore + 1)} className="btn-floating btn-large halfway-fab waves-effect waves-light red">
                     <i className="large material-icons">star_border</i>   
                 </a>
-                
+*/}            
             </div>
             <div className="card-stacked">
-                <div className="chip"><img src={require("../imgs/fg-avatar-anonymous-user-retina.png")} alt="by" />by {author}</div> 
-                <div className="chip">{`posted ${timestamp2String(timestamp)}`}</div> 
-                <div className="chip">{`commented ${commentCount} times`}</div>
-                <div className="card-content">
-                    <p>{body}</p>
+                <div className="card-action deep-orange lighten-2">
+                    <div className="toolbar">
+                    <div className="chip"><img src={require("../imgs/fg-avatar-anonymous-user-retina.png")} alt="by" />by {author}</div> 
+                    <div className="chip">{`posted ${timestamp2String(timestamp)}`}</div> 
+                    <div className="chip">{`commented ${commentCount} times`}</div>
+                    <a href='#!' onClick={props.onLike} className="green-text right"><i className="material-icons">thumb_up</i></a>
+                    <a href="#!" onClick={props.onDislike} className="yellow-text right"><i className="material-icons">thumb_down</i></a>
+                    <a href='#!' onClick={props.onDelete} className="red-text right"><i className="material-icons">delete</i></a>
+                    <a href="#!" onClick={props.onEdit} className="blue-text right"><i className="material-icons">edit</i></a>
+                    </div>
                 </div>
-            </div>
-            <div className="card-action">
-                <a href='#!' onClick={props.onDelete} className="right red-text"><i className="material-icons">delete</i></a>
-                <a href="#!" onClick={props.onEdit} className="right blue-text"><i className="material-icons">edit</i></a>
-            </div>
+                    <div className="card-content deep-orange lighten-4">
+                        <p>{body}</p>
+                    </div>
+               </div>
        </div>
     )
 }
@@ -127,14 +132,15 @@ class MPost extends React.Component {
         this.setState(({post})=>({editing:true, post : {...post,[name]:value}}))        
     }     
     onDelete = _=> this.props.serverDelPost(this.props.id)
-    onRate = _=> this.props.serverRatePost(this.props.id)
+    onLike = _=> this.props.serverRatePost(this.props.id)
+    onDislike = _=> this.props.serverRatePost(this.props.id, 'downVote')
 
     render () {
         const { post, editing, isNew} = this.state;
         const {categories} = this.props
         return (editing? 
             <PostEdit post={post} isNew={isNew} categories={categories} onSave={this.onSave} onCancel={this.onCancel} onChange={this.onChange} /> 
-            : <Post post={post} onEdit={this.onEdit} onDelete={this.onDelete} onRate={this.onRate} />
+            : <Post post={post} onEdit={this.onEdit} onDelete={this.onDelete} onLike={this.onLike} onDislike={this.onDislike} />
         )        
     }
 }

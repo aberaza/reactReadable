@@ -16,7 +16,7 @@ class NavHeader extends React.Component {
         return (
             <div className="navbar-fixed">
             <nav className="nav-extended">
-                <div className="nav-wrapper">
+                <div className="nav-wrapper deep-orange">
                     <Link to="/" className="brand-logo"><i className="material-icons">chat_bubble_outline</i>Readable</Link>
     
                     <ul id="nav-mobile" className="right">
