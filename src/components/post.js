@@ -12,10 +12,9 @@ function Post(props){
 
     return (
        <div className="card">
-           <div className="card-image">
-               <img src="//:0" style={{backgroundColor:'#ff7043', height: '100px'}} alt=""/>
+           <div className="card-content deep-orange lighten-1">
             
-                <Link to={`/${category}/${id}`} className="card-title" style={{width:'100%'}} >
+                <Link to={`/${category}/${id}`} className="card-title white-text" style={{width:'100%'}} >
                     {title}    
                     <div className="badge right"> {voteScore} <i className="close material-icons">star</i></div>
                 </Link>
@@ -27,6 +26,9 @@ function Post(props){
 */}            
             </div>
             <div className="card-stacked">
+                <div className="card-content deep-orange lighten-4">
+                    <p>{body}</p>
+                </div>
                 <div className="card-action deep-orange lighten-2">
                     <div className="toolbar">
                     <div className="chip"><img src={require("../imgs/fg-avatar-anonymous-user-retina.png")} alt="by" />by {author}</div> 
@@ -38,9 +40,6 @@ function Post(props){
                     <a href="#!" onClick={props.onEdit} className="blue-text right"><i className="material-icons">edit</i></a>
                     </div>
                 </div>
-                    <div className="card-content deep-orange lighten-4">
-                        <p>{body}</p>
-                    </div>
                </div>
        </div>
     )
