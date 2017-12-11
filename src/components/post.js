@@ -43,7 +43,7 @@ function Post(props){
 
 function PostEdit(props){
     const { post, isNew=true, categories, onChange, onSave, onCancel } = props;
-    const { title, body, author, category } = post;
+    const { title, body, author } = post;
 
     return (        
         <div className="card">

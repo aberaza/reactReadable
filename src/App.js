@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import { Switch, Route, Link } from 'react-router-dom'
+import $ from 'jquery'
 
 import { AppHeader } from './components/header';
 import { AppPostList } from './components/postList'
@@ -15,6 +16,10 @@ import 'materialize-css/dist/js/materialize.min.js'
 class App extends Component {
   state = {
     sort:""
+  }
+
+  componentDidMount(){
+    $('.tap-target').tapTarget('open');
   }
 
   changeSorting = ( sort ) => this.setState( (state) =>( {...state, sort }) );
@@ -33,12 +38,17 @@ class App extends Component {
         
         <div className="fixed-action-btn horizontal">
           <Switch>
-            <Route exact path="/:category/:id" render={({location})=>( <Link to={`${location.pathname}/comment`} className="btn-floating btn-large green modal-trigger"><i className="large material-icons pink">comment</i></Link> )} />
+            <Route exact path="/:category/:id" render={({location})=>( <Link to={`${location.pathname}/comment`} id="addBtn" className="btn-floating btn-large green modal-trigger"><i className="large material-icons pink">comment</i></Link> )} />
             <Route path="/new" render={_=>(<span></span>)} />
-            <Route exact path="/" render={_=>(<Link to="/new" className="btn-floating btn-large green modal-trigger"><i className="large material-icons">add</i></Link>)} />
-            <Route exact path="/:category" render={_=>(<Link to="/new" className="btn-floating btn-large green modal-trigger"><i className="large material-icons">add</i></Link>)} />
+            <Route exact path="/" render={_=>(<Link to="/new" id="addBtn" className="btn-floating btn-large green modal-trigger"><i className="large material-icons">add</i></Link>)} />
+            <Route exact path="/:category" render={_=>(<Link to="/new" id="addBtn" className="btn-floating btn-large green modal-trigger"><i className="large material-icons">add</i></Link>)} />
           </Switch>
-        </div>             
+        </div>
+        <div class="tap-target" data-activates="addBtn">
+          <div class="tap-target-content">
+            <h5>Add a Post or Comment</h5>
+            <p>Don't be shy and share your thoughts. Click here to add a new post or comment an existing one!</p>              </div>
+          </div>             
       </div>
     );
   }

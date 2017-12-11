@@ -1,9 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Route, Link } from 'react-router-dom'
 
 import { timestamp2String } from '../utils/helpers'
-import { addComment, delComment, rateComment } from '../actions/comments'
 
 function Comment(props){
     const { body, author, voteScore, timestamp } = props.comment;

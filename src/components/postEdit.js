@@ -1,11 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import UUID from 'uuid'
 import { AppPost } from './post'
-
-import { timestamp2String } from '../utils/helpers'
-
 
 class PostNew extends React.Component {
 

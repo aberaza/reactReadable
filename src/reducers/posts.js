@@ -1,5 +1,5 @@
 import { GET_POST, GET_POSTS, GET_CATEGORY_POSTS, ADD_POST, EDIT_POST, DEL_POST } from '../actions'
-import { flagAsDeleted, setVoteScore, updateElement } from '../utils/helpers'
+import { flagAsDeleted, updateElement } from '../utils/helpers'
 
 /* partial model:
 {

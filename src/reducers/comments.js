@@ -1,6 +1,6 @@
-import { GET_POST_COMMENTS, ADD_COMMENT, EDIT_COMMENT, GET_COMMENT, DEL_COMMENT, RATE_COMMENT } from '../actions'
+import { GET_POST_COMMENTS, ADD_COMMENT, EDIT_COMMENT, GET_COMMENT, DEL_COMMENT } from '../actions'
 
-import { flagAsDeleted, setVoteScore, updateElement } from '../utils/helpers'
+import { flagAsDeleted, updateElement } from '../utils/helpers'
 /* partial state model
 {
     ...,

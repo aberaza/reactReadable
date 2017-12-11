@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, GET_CATEGORY_POSTS, SET_CATEGORY } from '../actions'
+import { GET_CATEGORIES, SET_CATEGORY } from '../actions'
 
 const initialCategoriesState = [{name:"cat1", path:"cat1"}, {name:"tales", path:"tales"}, {name:"MagicUltra", path:"MagicUltra"}];
     

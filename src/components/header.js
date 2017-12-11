@@ -30,9 +30,9 @@ class NavHeader extends React.Component {
                         </li>
                         <li><a className="dropdown-button" href="#!" data-activates="dropdownSort"><i className="material-icons">filter_list</i></a>
                             <ul id="dropdownSort" className="dropdown-content">
-                                <li><a onClick={()=>onChangeSorting("voteScore")} >Score</a></li>
-                                <li><a onClick={()=>onChangeSorting("timestamp")} >Date</a></li>
-                                <li><a onClick={()=>onChangeSorting("commentCount")} >Popularity</a></li>
+                                <li key="sortScore"><a onClick={()=>onChangeSorting("voteScore")} >Score</a></li>
+                                <li key="sortDate"><a onClick={()=>onChangeSorting("timestamp")} >Date</a></li>
+                                <li key="sortPopularity"><a onClick={()=>onChangeSorting("commentCount")} >Popularity</a></li>
                             </ul>
                         </li>
                     </ul>
