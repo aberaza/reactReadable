@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { timestamp2String } from '../utils/helpers'
 
@@ -31,9 +32,16 @@ function Comment(props){
     </div>
     )
 }
+Comment.propTypes = {
+    comment: PropTypes.object.isRequired,
+    del: PropTypes.func.isRequired,
+    like: PropTypes.func.isRequired,
+    dislike: PropTypes.func.isRequired,
+    edit: PropTypes.func.isRequired
+}
 
 function EditComment(props) {
-    const { comment, change, save, cancel, isNew } = props;
+    const { comment, change, save, cancel, isNew=false } = props;
     const { body="", author="" } = comment;
 
     return (
@@ -62,6 +70,15 @@ function EditComment(props) {
             )} />
         </div>
     )
+}
+
+EditComment.propTypes = {
+    comment: PropTypes.object.isRequired,
+    change: PropTypes.func.isRequired,
+    save: PropTypes.func.isRequired,
+    cancel: PropTypes.func.isRequired,
+    isNew: PropTypes.bool
+
 }
 
 export class AppComment extends React.Component {
@@ -94,4 +111,10 @@ export class AppComment extends React.Component {
                 : <Comment comment={this.props.comment} edit={this.onEdit} del={this.onDelete} like={this.onLike} dislike={this.onDislike} /> 
         )
     }
+}
+
+AppComment.propTypes = {
+    comment:PropTypes.object.isRequired,
+    isNew:PropTypes.bool,
+    editin:PropTypes.bool
 }

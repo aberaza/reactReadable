@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { serverGetCategories, setCategory } from '../actions/categories'
 
@@ -45,6 +46,11 @@ class NavHeader extends React.Component {
             </div>
         );
     }
+}
+
+NavHeader.propTypes = {
+    categories : PropTypes.array.isRequired,
+    onChangeSorting : PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({categories}) => ({ categories })

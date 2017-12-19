@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router-dom'
 import UUID from 'uuid'
+import PropTypes from 'prop-types'
 
 import { AppPost } from './post'
-
 import { AppComment } from './comment'
 import { serverGetPostComments, serverEditComment, serverRateComment, serverDelComment, serverAddComment } from '../actions/comments'
 import { serverGetPost } from '../actions/posts'
@@ -37,6 +37,10 @@ class PostDetails extends React.Component {
             </div>
         )
     }
+}
+
+PostDetails.propTypes = {
+    id: PropTypes.string.isRequired
 }
 
 const mapStateToProps = ( { comments } , { id }) => ( {  

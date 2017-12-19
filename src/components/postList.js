@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { AppPost } from './post'
 import { sortBy } from '../utils/helpers'
@@ -27,6 +28,12 @@ class PostList extends React.Component {
             </div>
         )    
     }
+}
+
+PostList.propTypes = {
+    posts : PropTypes.array.isRequired,
+    sort : PropTypes.string.isRequired,
+    category : PropTypes.string
 }
 
 const mapStateToProps = ({posts}) => ({ posts })

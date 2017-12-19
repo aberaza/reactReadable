@@ -1,10 +1,10 @@
 import  React  from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import $ from 'jquery'
 
 import { serverAddPost, serverEditPost, serverDelPost, serverRatePost } from '../actions/posts' 
-
 import { timestamp2String } from '../utils/helpers'
 
 function Post(props){
@@ -13,17 +13,10 @@ function Post(props){
     return (
        <div className="card">
            <div className="card-content deep-orange lighten-1">
-            
                 <Link to={`/${category}/${id}`} className="card-title white-text" style={{width:'100%'}} >
                     {title}    
                     <div className="badge right"> {voteScore} <i className="close material-icons">star</i></div>
-                </Link>
-
-{ /*
-                <a href="#!" onClick={()=>props.onRate(voteScore + 1)} className="btn-floating btn-large halfway-fab waves-effect waves-light red">
-                    <i className="large material-icons">star_border</i>   
-                </a>
-*/}            
+                </Link>          
             </div>
             <div className="card-stacked">
                 <div className="card-content deep-orange lighten-4">
@@ -43,6 +36,14 @@ function Post(props){
                </div>
        </div>
     )
+}
+
+Post.propTypes = {
+    post : PropTypes.object.isRequired,
+    onLike: PropTypes.func.isRequired,
+    onDislike: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired
 }
 
 function PostEdit(props){
@@ -88,6 +89,15 @@ function PostEdit(props){
             </div>
        </div>
     )
+}
+
+PostEdit.propTypes = {
+    post : PropTypes.object.isRequired,
+    categories: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    isNew : PropTypes.bool
 }
 
 class MPost extends React.Component {
@@ -142,6 +152,10 @@ class MPost extends React.Component {
             : <Post post={post} onEdit={this.onEdit} onDelete={this.onDelete} onLike={this.onLike} onDislike={this.onDislike} />
         )        
     }
+}
+
+MPost.propTypes = {
+    id : PropTypes.string.isRequired
 }
 
 const mapStateToProps = ( {posts, categories}, { id }) => ({
