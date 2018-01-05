@@ -8,7 +8,7 @@ import { serverAddPost, serverEditPost, serverDelPost, serverRatePost } from '..
 import { timestamp2String } from '../utils/helpers'
 
 function Post(props){
-    const {id, title, body, timestamp, category, author, commentCount, voteScore } = props.post;
+    const {id, title, body, timestamp, category, author, commentCount=0, voteScore } = props.post;
 
     return (
        <div className="card">

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 
 import { AppPost } from './post'
 import { AppComment } from './comment'
+import { Error404 } from './Error404'
 import { serverGetPostComments, serverEditComment, serverRateComment, serverDelComment, serverAddComment } from '../actions/comments'
 import { serverGetPost } from '../actions/posts'
 import { sortBy } from '../utils/helpers'
@@ -17,13 +18,16 @@ class PostDetails extends React.Component {
     }
 
     render() {
-        const {id, comments=[], sort, delComment, rateComment, editComment, addComment } = this.props;
+        const {id, comments=[], sort, delComment, rateComment, editComment, addComment, postExists } = this.props;
         const cId = UUID.v1();
         return (
             <div className="postDetails">
                 <div className="row">
                     <div className="col s12">
-                        <AppPost id={id}></AppPost>
+                        { postExists 
+        ? ( <AppPost id={id} /> ) 
+                        : ( <Error404 /> )
+                        }
                     </div>
                 
                     <div className="col s11 push-s1">
@@ -43,8 +47,9 @@ PostDetails.propTypes = {
     id: PropTypes.string.isRequired
 }
 
-const mapStateToProps = ( { comments } , { id }) => ( {  
-    comments: comments.filter(comment => comment.parentId === id)
+const mapStateToProps = ( { comments, posts } , { id }) => ( {  
+    comments: comments.filter(comment => comment.parentId === id),
+    postExists: posts.some(p=>(p.id === id))
 })
 
 const mapDispatchToProps = {
