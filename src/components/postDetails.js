@@ -25,13 +25,13 @@ class PostDetails extends React.Component {
                 <div className="row">
                     <div className="col s12">
                         { postExists 
-        ? ( <AppPost id={id} /> ) 
-                        : ( <Error404 /> )
+                            ? ( <AppPost id={id} /> ) 
+                            : ( <Error404 /> )
                         }
                     </div>
                 
                     <div className="col s11 push-s1">
-                        { comments
+                        { postExists && comments
                                 .filter( comment => !comment.deleted )
                                 .sort(sortBy(sort))
                                 .map( comment => <AppComment key={comment.id} comment={comment} edit={editComment} rate={rateComment} del={delComment} />) }
