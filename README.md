@@ -32,7 +32,7 @@ Then CD to *api-server* and run ```npm install```
 
 #### Run api-server
 
-Simply CD to the *api-server* directory (```cd <path_to_folder>\api-server```) if not already there and execute ```npm start``` 
+Simply CD to the *api-server* directory (```cd <path_to_folder>\api-server```) if not already there and execute ```node server``` 
 
 
 ### Install
