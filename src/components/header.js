@@ -39,11 +39,11 @@ class NavHeader extends React.Component {
 
         return (
         <div className="navbar-fixed">
-            <nav className="nav-extended">
+            <nav>
                 <div className="nav-wrapper deep-orange">
                     <Link to="/" className="brand-logo"><i className="material-icons">chat_bubble_outline</i>Readable</Link>
                     <Switch>
-                        <Route exact path="/404" component={Error404}></Route>
+                        <Route exact path="/404" component={null}></Route>
                         <Route render={_=>(<NavigationMenu categories={categories} onChangeSorting={onChangeSorting} />)}></Route>
                     </Switch>
                 </div>
