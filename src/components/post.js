@@ -1,5 +1,5 @@
 import  React  from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
@@ -140,7 +140,7 @@ class MPost extends React.Component {
         const {name, value} = e.target
         this.setState(({post})=>({editing:true, post : {...post,[name]:value}}))        
     }     
-    onDelete = _=> this.props.serverDelPost(this.props.id)
+    onDelete = _=> this.props.serverDelPost(this.props.id).then(this.props.history.push('/')) 
     onLike = _=> this.props.serverRatePost(this.props.id)
     onDislike = _=> this.props.serverRatePost(this.props.id, 'downVote')
 
@@ -165,4 +165,4 @@ const mapStateToProps = ( {posts, categories}, { id }) => ({
 
 const mapDispatchToProps = {serverAddPost, serverEditPost, serverDelPost, serverRatePost }
 
-export let AppPost = connect(mapStateToProps, mapDispatchToProps)(MPost)
+export let AppPost = withRouter(connect(mapStateToProps, mapDispatchToProps)(MPost))

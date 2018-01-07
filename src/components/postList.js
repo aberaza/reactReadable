@@ -1,10 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { AppPost } from './post'
 import { sortBy } from '../utils/helpers'
 import { serverGetPosts } from '../actions/posts'
+
+import AddContentButton from './AddContentButton'
 
 class PostList extends React.Component {
     componentDidMount() {
@@ -15,6 +18,7 @@ class PostList extends React.Component {
         const { posts, category = 'ALL', sort } = this.props;
 
         return (
+          <div className="postListContainer">
             <div className="posts">
               <div className="row">
                 <div className="col s12">
@@ -26,6 +30,8 @@ class PostList extends React.Component {
                 </div>
               </div>
             </div>
+            <AddContentButton />
+          </div>
         )    
     }
 }
@@ -39,4 +45,4 @@ PostList.propTypes = {
 const mapStateToProps = ({posts}) => ({ posts })
 const mapDispatchToProps = { getPosts : serverGetPosts }
 
-export let AppPostList = connect(mapStateToProps, mapDispatchToProps)(PostList)
+export let AppPostList = withRouter(connect(mapStateToProps, mapDispatchToProps)(PostList))

@@ -14,7 +14,7 @@ export function Error404 (props){
                 <div className="card-content blue-grey lighten-4">
                     <p>Post does not exist. Please, go <Link to={`/`}> back home</Link>.</p>
                 </div>
-               </div>
+            </div>
        </div>
     )
 }
