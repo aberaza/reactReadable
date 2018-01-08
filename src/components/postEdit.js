@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import UUID from 'uuid'
+
+import { getUUID } from '../utils/helpers'
+
 import { AppPost } from './post'
 
 class PostNew extends React.Component {
@@ -10,7 +12,7 @@ class PostNew extends React.Component {
             <div className="posts">
                 <div className="row">
                     <div className="col s12">
-                        <AppPost editing={true} isNew={true} id={UUID.v1()}/>
+                        <AppPost editing={true} isNew={true} id={getUUID()}/>
                     </div>
                 </div>
             </div>

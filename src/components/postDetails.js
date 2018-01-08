@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter, Redirect } from 'react-router-dom'
-import UUID from 'uuid'
 import PropTypes from 'prop-types'
 
 import { AppPost } from './post'
@@ -10,7 +9,7 @@ import AddContentButton from './AddContentButton'
 
 import { serverGetPostComments, serverEditComment, serverRateComment, serverDelComment, serverAddComment } from '../actions/comments'
 import { serverGetPost } from '../actions/posts'
-import { sortBy } from '../utils/helpers'
+import { sortBy, getUUID } from '../utils/helpers'
 
 class PostDetails extends React.Component {
     constructor() {
@@ -32,7 +31,7 @@ class PostDetails extends React.Component {
 
     render() {
         const {id, comments=[], sort, delComment, rateComment, editComment, addComment, postExists } = this.props;
-        const cId = UUID.v1();
+        const cId = getUUID();
         
         if(this.state.error){
             return ( <Redirect to='/404' push/> )

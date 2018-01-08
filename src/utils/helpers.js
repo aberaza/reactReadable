@@ -1,4 +1,13 @@
 /** HELPERS */
+
+export const getUUID = _=> {
+    const s4 = _ => Math.floor((1+Math.random())*0x10000)
+        .toString(16)
+        .substring(1)
+
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4() + s4();
+}
+
 export const flagAsDeleted = (id) => (item) => {
     if(item.id === id){
         item.deleted = true;
