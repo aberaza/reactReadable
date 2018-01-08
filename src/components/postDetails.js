@@ -13,18 +13,31 @@ import { serverGetPost } from '../actions/posts'
 import { sortBy } from '../utils/helpers'
 
 class PostDetails extends React.Component {
+    constructor() {
+        super();
+        this.state = { 
+            error : false
+        }
+    }
+
     componentDidMount(){
         this.props.getPost(this.props.id)
+            .then(response =>{
+                if(response.post.error || !this.props.postExists) {
+                    this.setState({error : true})
+                }
+            })
         this.props.getPostComments(this.props.id)
     }
 
     render() {
         const {id, comments=[], sort, delComment, rateComment, editComment, addComment, postExists } = this.props;
         const cId = UUID.v1();
-        console.dir(this.props)
-        if(!postExists){
+        
+        if(this.state.error){
             return ( <Redirect to='/404' push/> )
         }
+
         return (
             <div className="postDetailsContainer">
             <div className="postDetails">
