@@ -22,7 +22,9 @@ class MPost extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({post:nextProps.post})
+        if(nextProps.post !== this.state.post){
+            this.setState({post:nextProps.post})
+        }
     }
 
     constructor(props, context){
@@ -35,8 +37,7 @@ class MPost extends React.Component {
         }
     }
 
-    onEdit = ()=> this.setState({editing:true})
-    onCancel = ()=> this.setState({editing:false})
+    onEditAndCancel = ()=> this.setState({editing: !this.state.editing})
     onSave = _ => { 
         this.setState({editing:false}); 
         let p = this.state.post;
@@ -58,8 +59,8 @@ class MPost extends React.Component {
         const { post, editing, isNew} = this.state;
         const {categories} = this.props
         return (editing? 
-            <PostEdit post={post} isNew={isNew} categories={categories} onSave={this.onSave} onCancel={this.onCancel} onChange={this.onChange} /> 
-            : <Post post={post} onEdit={this.onEdit} onDelete={this.onDelete} onLike={this.onLike} onDislike={this.onDislike} />
+            <PostEdit post={post} isNew={isNew} categories={categories} onSave={this.onSave} onCancel={this.onEditAndCancel} onChange={this.onChange} /> 
+            : <Post post={post} onEdit={this.onEditAndCancel} onDelete={this.onDelete} onLike={this.onLike} onDislike={this.onDislike} />
         )        
     }
 }
